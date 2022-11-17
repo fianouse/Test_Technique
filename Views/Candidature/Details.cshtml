@@ -1,0 +1,64 @@
+﻿@model last_test_tech.Models.Candidat
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>
+        <label> Informations de </label>
+        @Html.DisplayFor(model => model.nom)
+        @Html.DisplayFor(model => model.prenom)
+
+    </h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label>Nom</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Prenom</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Mail</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mail)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Tele</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tele)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Niveau d'etude</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.niveau_detude)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Nombre d'anne d'experience</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nbr_anne_exp)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Dernier employeur</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dn_employeur)
+        </dd>
+        <dd class="col-sm-8">
+            <img src="~/uploads/@Model.CV_path" class="figure-img border-dark rounded" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+</div>

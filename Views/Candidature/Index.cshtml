@@ -1,0 +1,85 @@
+﻿@model IEnumerable<last_test_tech.Models.Candidat>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List des Candidatures</h1>
+
+@using (Html.BeginForm())
+ {
+        <div class="input-group">
+            @Html.TextBox("SearchByName", null, new { @class = "form-control", @placeholder = "Entre le nom de candidat" })
+            <input type="submit" value="Search" class="btn btn-outline-primary" />
+            <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+        </div>
+ }
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Id</label>
+            </th>
+            <th>
+                <label>Nom</label>
+            </th>
+            <th>
+                <label>Prenom</label>
+            </th>
+            <th>
+                <label>Mail</label>
+            </th>
+            <th>
+                <label>Tele</label>
+            </th>
+            <th>
+                <label>Niveau d'etude</label>
+            </th>
+            <th>
+                <label>Experience</label>
+            </th>
+            <th>
+                <label>Dernier employeur</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tele)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.niveau_detude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nbr_anne_exp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dn_employeur)
+            </td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer ce candidat ?')">Supprimer</button>
+                </form>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Détails</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
