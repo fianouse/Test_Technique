@@ -28,6 +28,7 @@ namespace last_test_tech.Controllers
             {
                 candidatures = candidatures.Where(c => c.prenom.ToLower().Contains(SearchByName.ToLower()) || c.nom.ToLower().Contains(SearchByName.ToLower())).ToList();
             }
+            //retourner la list des candidatures
             return View(candidatures);
         }
 
@@ -45,6 +46,7 @@ namespace last_test_tech.Controllers
                 string filename = string.Empty;
                 if (model.Cv != null)
                 {
+                    //enregistrer les images dans le dossier uploads 
                     string uploads = Path.Combine(Hosting.WebRootPath, "uploads");
                     filename = model.nom + "_" +model.prenom +"_"+ model.Cv.FileName;
                     string fullpath = Path.Combine(uploads, filename);
@@ -63,6 +65,7 @@ namespace last_test_tech.Controllers
                 };
 
                 db.Add(candidat);
+                //ajouter une candidature à la base de données
                 db.SaveChanges();
                 return RedirectToAction("Details",candidat);
             }
@@ -74,6 +77,7 @@ namespace last_test_tech.Controllers
         public IActionResult Details(int id)
         {
             Candidat candidat = db.candidatures.Where(c => c.Id == id).FirstOrDefault();
+            //afficher les détails d'une candidature
             return View(candidat);
         }
         [HttpPost]
@@ -85,6 +89,7 @@ namespace last_test_tech.Controllers
                 db.candidatures.Remove(candidat);
                 db.SaveChanges();
             }
+            //supprimer une candidature de la base de données
             return RedirectToAction("Index");
         }
         private void uploadfile(candidaturecreateView Candidature)
