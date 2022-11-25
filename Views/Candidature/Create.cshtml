@@ -5,8 +5,9 @@
 }
 <div class="container py-5 ">
     <div class="row">
-        <div class="col-md-12 mx-auto d-flex justify-content-center">
+        <div class="col-md-12 mx-auto">
             <form enctype="multipart/form-data" asp-action="Create">
+                <h3 id="etap" class="text-center">Etap 1</h3>
                 <div id="tab1">
                     <div class="form-group row">
                         <div class="col-sm-6">
@@ -35,27 +36,32 @@
                     </div>
                     <div class="form-group row">
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <label asp-for="niveau_detude" class="control-label"></label>
-                            <input asp-for="niveau_detude" class="form-control" />
+                            <select asp-for="niveau_detude" class="form-control">
+                                <option value="Bac">Bac</option>
+                                <option value="Bac+2">Bac+2</option>
+                                <option value="Bac+3">Bac+3</option>
+                                <option value="Bac+4">Bac+4</option>
+                                <option value="Bac+5">Bac+5</option>
+                            </select>
                             <span asp-validation-for="niveau_detude" class="text-danger"></span>
                         </div>
-                        <div class="col-sm-6">
-                            <label asp-for="nbr_anne_exp" class="control-label row"></label>
+                        <div class="col-sm-3">
+                            <label asp-for="nbr_anne_exp" class="control-label"></label>
                             <input asp-for="nbr_anne_exp" class="form-control" />
                             <span asp-validation-for="nbr_anne_exp" class="text-danger"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label asp-for="dn_employeur" class="control-label"></label>
+                            <input asp-for="dn_employeur" class="form-control" />
+                            <span asp-validation-for="dn_employeur" class="text-danger"></span>
                         </div>
                     </div>
                     <input type="button" id="next1" value="Next" class="btn rounded btn-primary"/>
                 </div>
                 <div class="tab2">
                     <div class="form-group row">
-
-                        <div class="col-sm-6">
-                            <label asp-for="dn_employeur" class="control-label"></label>
-                            <input asp-for="dn_employeur" class="form-control" />
-                            <span asp-validation-for="dn_employeur" class="text-danger"></span>
-                        </div>
                         <div class="col-sm-6">
                             <label class="control-label">Telecharger votre Cv</label>
                             <div class="input-group">
@@ -73,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit" class="btn btn-primary" />
-                        <input type="button" value="Back" class="btn btn-outline-primary" />
+                        <input id="back" type="button" value="Back" class="btn btn-outline-primary" />
                     </div>
                 </div>
                 
@@ -98,6 +104,12 @@
         $("#next1").on("click", function () {
             $("#tab1").hide();
             $(".tab2").show();
+            $("#etap").html("Etap 2")
+        })
+        $("#back").on("click", function () {
+            $(".tab2").hide();
+            $("#tab1").show();
+            $("#etap").html("Etap 1")
         })
     </script>
 }
