@@ -1,13 +1,13 @@
-﻿@model last_test_tech.ViewModel.candidaturecreateView
+@model last_test_tech.ViewModel.candidaturecreateView
 
 @{
     ViewData["Title"] = "Create";
 }
-<div class="container py-5">
+<div class="container py-5 ">
     <div class="row">
-        <div class="col-md-12 mx-auto">
+        <div class="col-md-12 mx-auto d-flex justify-content-center">
             <form enctype="multipart/form-data" asp-action="Create">
-                <fieldset>
+                <div id="tab1">
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label asp-for="nom" class="control-label"></label>
@@ -41,11 +41,14 @@
                             <span asp-validation-for="niveau_detude" class="text-danger"></span>
                         </div>
                         <div class="col-sm-6">
-                            <label asp-for="nbr_anne_exp" class="control-label"></label>
+                            <label asp-for="nbr_anne_exp" class="control-label row"></label>
                             <input asp-for="nbr_anne_exp" class="form-control" />
                             <span asp-validation-for="nbr_anne_exp" class="text-danger"></span>
                         </div>
                     </div>
+                    <input type="button" id="next1" value="Next" class="btn rounded btn-primary"/>
+                </div>
+                <div class="tab2">
                     <div class="form-group row">
 
                         <div class="col-sm-6">
@@ -54,15 +57,26 @@
                             <span asp-validation-for="dn_employeur" class="text-danger"></span>
                         </div>
                         <div class="col-sm-6">
-                            <label asp-for="Cv" class="control-label"></label>
-                            <input type="file" accept=".pdf,image/*" asp-for="Cv" class="form-control" />
-                            <span asp-validation-for="Cv" class="text-danger"></span>
+                            <label class="control-label">Telecharger votre Cv</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input asp-for="Cv" accept="image/*, .pdf" type="file" class="custom-file-input" id="inputGroupFile01"
+                                           aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" id="FileName" for="inputGroupFile01">Choose file</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="dn_employeur" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        <input type="button" value="Back" class="btn btn-outline-primary" />
                     </div>
-                </fieldset>
+                </div>
+                
             </form>
         </div>
     </div>
@@ -73,4 +87,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tab2").hide();
+        })
+        $('#inputGroupFile01').on('change', function () {
+            var inputphoto = $(this).val().split("\\").pop();
+            $('#FileName').html(inputphoto);
+        })
+        $("#next1").on("click", function () {
+            $("#tab1").hide();
+            $(".tab2").show();
+        })
+    </script>
 }
